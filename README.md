@@ -33,10 +33,6 @@
 
 ---
 
-Perfeito, Dani 🙌 vou montar uma descrição organizada no estilo de documentação de projeto, pensando no teu caso do **labirinto resolvido com Dijkstra/Prim/Kruskal**.
-
----
-
 ## 🎯 Objetivo
 
 Desenvolver uma aplicação interativa que permita ao usuário **desenhar ou carregar mapas de labirinto** e resolvê-los utilizando algoritmos clássicos de grafos. O sistema deve encontrar o **caminho mais curto** entre dois pontos através do **Dijkstra** e, opcionalmente, **gerar ou otimizar mapas** usando algoritmos de **árvore geradora mínima (Prim e Kruskal)**.
