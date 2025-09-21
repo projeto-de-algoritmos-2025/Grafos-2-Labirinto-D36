@@ -1,11 +1,5 @@
 import heapq
-
-TERRAIN_WEIGHTS = {
-    "grass": 1,
-    "sand": 3,
-    "water": 5,
-    "rock": 7,
-}
+from settings import *
 
 def get_neighbors(node, grid_obj):
     neighbors = []

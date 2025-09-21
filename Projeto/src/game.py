@@ -3,19 +3,34 @@ from grid import Grid
 from toolbar import ToolPanel
 from settings import *
 from pathfinder import dijkstra
+from alert_dialog import AlertDialog
+import os
+print(os.getcwd())
+
 
 class Game:
     def __init__(self, screen, cols):
+        
         self.screen = screen
         self.cols = cols
         self.grid = Grid(ROWS, cols, CELL_SIZE, TOOL_PANEL_WIDTH) 
         self.tool_panel = ToolPanel(screen, ICON_SIZE, SPACING, MARGIN)
+        self.alert_dialog = AlertDialog(self.screen, instructions_text, "Entendi!", 800, 600)
+        self.alert_dialog.active = True
 
+    def show_msg(self, msg):
+        self.alert_dialog = AlertDialog(self.screen, msg, "OK", 400, 180)
+        self.alert_dialog.active = True
+        
     def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+
+            if self.alert_dialog.active:
+                self.alert_dialog.handle_event(event)
+                continue
             
             self.tool_panel.handle_event(event)
             
@@ -28,13 +43,14 @@ class Game:
                     self.grid.path = path
                     self.grid.visited_nodes = visited
                     if path:
-                        print(f"Caminho encontrado com {len(path)} passos!")
+                        self.show_msg(f"Caminho encontrado com {len(path)} passos!")
                     else:
-                        print("Não foi possível encontrar um caminho.")
+                        self.show_msg("Não foi possível encontrar um caminho.")
+
                 if event.key == pygame.K_c:
                     self.grid.path = []
                     self.grid.visited_nodes = set()
-                    print("Caminho e visualização limpos.")
+                    self.show_msg("A visualização do caminho foi limpa!")
 
         buttons = pygame.mouse.get_pressed()
         if buttons[0]:
@@ -52,3 +68,6 @@ class Game:
         self.screen.fill(WHITE)
         self.grid.draw(self.screen)
         self.tool_panel.draw()
+
+        if self.alert_dialog.active:
+            self.alert_dialog.draw()
