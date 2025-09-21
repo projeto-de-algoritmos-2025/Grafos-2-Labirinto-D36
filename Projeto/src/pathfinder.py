@@ -16,6 +16,7 @@ def get_neighbors(node, grid_obj):
     return neighbors
 
 def dijkstra(grid_obj, start, end):
+    print(start, end)
     if (not start or not end or 
         grid_obj.grid[start[0]][start[1]]['type'] == "wall" or 
         grid_obj.grid[end[0]][end[1]]['type'] == "wall"):
