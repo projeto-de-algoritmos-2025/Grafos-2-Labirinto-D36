@@ -1,22 +1,18 @@
-# Nome do executável
-EXEC = Grafos-1-Parking-lot
+CC = gcc
+CFLAGS =
+LDFLAGS = -lSDL2
 
-# Pasta com os arquivos-fonte
-SRC_DIR = Projeto
+SRC = $(wildcard Projeto/src/*.c)
+OBJ = $(SRC:.c=.o)
+EXEC = jogo
 
-# Busca automaticamente todos os .cpp dentro da pasta Projeto/
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-
-# Compilador e flags
-CXX = g++
-CXXFLAGS = -std=c++11 -Wall
-
-# Regra principal
 all: $(EXEC)
 
-$(EXEC): $(SRCS)
-	$(CXX) $(CXXFLAGS) $(SRCS) -o $(EXEC)
+$(EXEC): $(OBJ)
+	$(CC) $(OBJ) $(LDFLAGS) -o $@
 
-# Limpa o executável
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(EXEC)
+	rm -f $(OBJ) $(EXEC)

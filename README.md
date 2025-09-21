@@ -1,17 +1,15 @@
 # Labirinto
 
-**Número da Lista**: 36
+**Número da Lista**: 36  
 **Conteúdo da Disciplina**: FGA0124 - PROJETO DE ALGORITMOS - T01  
-
----
 
 ## 👩‍💻 Alunos
 
-<div align = "center">
+<div align="center">
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/danielle-soaress"><img style="border-radius: 50%;" src="https://github.com/danielle-soaress.png" width="190;" alt=""/><br /><sub><b>Danielle Soares</b></sub></a><br /><a href="Link git" title="Rocketseat"></a></td>
-    <td align="center"><a href="https://github.com/Leticia-Arisa-K-Higa"><img style="border-radius: 50%;" src="https://github.com/Leticia-Arisa-K-Higa.png" width="190px;" alt=""/><br /><sub><b>Leticia Arisa</b></sub></a><br />
+    <td align="center"><a href="https://github.com/danielle-soaress"><img style="border-radius: 50%;" src="https://github.com/danielle-soaress.png" width="190;" alt=""/><br /><sub><b>Danielle Soares</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Leticia-Arisa-K-Higa"><img style="border-radius: 50%;" src="https://github.com/Leticia-Arisa-K-Higa.png" width="190px;" alt=""/><br /><sub><b>Leticia Arisa</b></sub></a></td>
   </tr>
 </table>
 
@@ -21,67 +19,69 @@
 | 23/1012272  | Leticia Arisa Kobayashi Higa   |
 </div>
 
----
-
 ## 🎬 Apresentação do Projeto
 
 <div align="center">
 <a href="https://youtu.be/UFUj0rDUyyU"><img src="https://i.imgur.com/2LNlNYO.png" width="50%"></a>
 </div>
 
-<font size="3"><p style="text-align: center">Autor: [Danielle Soares](https://github.com/danielle-soaress) e [Leticia Arisa](https://github.com/Leticia-Arisa-K-Higa).</p></font>
-
----
+Autores: [Danielle Soares](https://github.com/danielle-soaress) e [Leticia Arisa](https://github.com/Leticia-Arisa-K-Higa).
 
 ## 🎯 Objetivo
 
-Desenvolver uma aplicação interativa que permita ao usuário **desenhar ou carregar mapas de labirinto** e resolvê-los utilizando algoritmos clássicos de grafos. O sistema deve encontrar o **caminho mais curto** entre dois pontos através do **Dijkstra** e, opcionalmente, **gerar ou otimizar mapas** usando algoritmos de **árvore geradora mínima (Prim e Kruskal)**.
+Desenvolver uma aplicação interativa que permita ao usuário **desenhar ou carregar mapas de labirinto** que contenha obstáculos e resolvê-los utilizando o algoritmo de Dijkstra.
 
----
+O sistema deve:
+- Encontrar o **caminho mais curto** entre dois pontos com **Dijkstra**.  
+- Permitir obstáculos ou terrenos que influenciem o trajeto, como monstros ou áreas mais “difíceis”.
 
 ## 🔧 Tecnologias e Estruturas Utilizadas
 
-* **Linguagem C** (implementação dos algoritmos de grafos).
-* **Estruturas de dados:**
-
-  * Matrizes (representação do labirinto).
-  * Listas de adjacência ou vetores dinâmicos (representação do grafo).
-  * Fila de prioridade (para Dijkstra).
-  * Estruturas de conjuntos disjuntos (Union-Find) para Kruskal.
-* **Interface: **
-  * `ncurses` → para visualização em terminal com cores.
-  * `SDL2` → para visualização gráfica com janelas e animação.
-
----
+- **Linguagem:** Python 3  
+- **Bibliotecas:**  
+  - `pygame` → interface gráfica, animações e interação com o usuário  
+  - `numpy` → manipulação eficiente de matrizes do labirinto  
+- **Estruturas de dados:**  
+  - Matrizes (representação do labirinto)  
+  - Listas ou dicionários (representação do grafo)  
+  - Fila de prioridade (para Dijkstra)  
 
 ## 🧩 Modelagem do Grafo
 
-* Cada **célula livre do labirinto** é um **nó do grafo**.
-* Cada **movimento possível** (cima, baixo, esquerda, direita) é uma **aresta**.
-* O **peso da aresta** pode ser:
-
-  * `1` (movimento simples),
-  * ou valores diferentes (ex.: terreno difícil, água, areia).
-* O nó de **início (S)** e o nó de **destino (E)** são os pontos usados no Dijkstra.
-* Para geração de labirintos com Prim/Kruskal, a grade de células é tratada como um grafo conexo onde o MST define os caminhos abertos.
+- Cada **célula do labirinto** é um **nó do grafo**.  
+- Cada **movimento possível** (cima, baixo, esquerda, direita) é uma **aresta**.  
+- O **peso da aresta** pode ser:
+  - `1` → movimento simples  
+  - Valor maior → terreno mais difícil ou obstáculo (ex.: monstro, água, lama)  
+- O nó de **início (E)** e o nó de **destino (S)** são os pontos usados pelo algoritmo de Dijkstra.  
 
 ---
 
 ## 🧠 Como funciona
 
-1. **Entrada do mapa**
-   * Usuário pode desenhar manualmente em arquivo `.txt` ou escolher entre mapas prontos.
+1. **Entrada do mapa**  
+   - Usuário pode desenhar manualmente o labirinto no Pygame ou carregar mapas prontos em `.txt`.  
+   - Exemplo de mapa em `.txt`:
+      ```python
+      ##########
+      #E #    ##
+      ##   #  S#
+      ##########
+      ```
+      - Onde: "E" = entrada e "S" = saída.
 
-2. **Construção do grafo**
-   * O mapa é convertido para um grafo com base nas células livres e suas conexões.
+2. **Construção do grafo**  
+   - Cada célula livre é convertida em nó.  
+   - Conexões possíveis formam as arestas, com pesos de acordo com obstáculos ou terreno.
 
-3. **Execução dos algoritmos**
-   * **Dijkstra:** encontra o menor caminho de `S` a `E`.
-   * **Prim/Kruskal:** usados para gerar labirintos aleatórios ou conectar regiões isoladas.
+3. **Execução dos algoritmos**  
+   - **Dijkstra:** encontra o menor caminho do início ao fim, considerando pesos.  
+   - **Prim/Kruskal:** gera labirintos aleatórios ou conecta regiões isoladas.
 
-4. **Saída**
-   * Exibir o labirinto com o caminho encontrado destacado.
-   * Se em modo gráfico, mostrar animação da expansão dos algoritmos.
+4. **Saída e visualização**  
+   - O labirinto e o caminho encontrado são exibidos no Pygame.  
+   - Cada passo do algoritmo pode ser animado para mostrar a expansão das buscas.  
+   - O usuário pode adicionar obstáculos e ver como eles alteram o caminho mais curto.
 
 ---
 
@@ -89,39 +89,33 @@ Desenvolver uma aplicação interativa que permita ao usuário **desenhar ou car
 
 1. **Clonar o repositório**
 
-   ```bash
-   git clone https://github.com/seuusuario/labirinto-grafos.git
-   cd labirinto-grafos
-   ```
+```bash
+git clone https://github.com/projeto-de-algoritmos-2025/Grafos-2-Labirinto-D3
+```
 
-2. **Compilar (modo console simples)**
+3. Entre na pasta do projeto
 
-   ```bash
-   gcc main.c -o labirinto
-   ./labirinto mapa.txt
-   ```
+```bash
+cd Projeto
+```
 
-3. **Compilar com ncurses (visualização no terminal)**
+4. Instalar dependências
 
-   ```bash
-   gcc main.c -o labirinto -lncurses
-   ./labirinto mapa.txt
-   ```
+```bash
+pip install pygame numpy
+```
 
-4. **Compilar com SDL2 (visualização gráfica)**
+5. Executar o programa
 
-   ```bash
-   gcc main.c -o labirinto -lSDL2
-   ./labirinto mapa.txt
-   ```
+```bash
+python main.py
+```
 
-5. **Resultado esperado**
 
-   * Caminho mais curto desenhado no mapa.
-   * Possibilidade de gerar labirintos novos ou resolver os prontos.
+##  💡 Observações
 
----
+Sistema desenvolvido para o curso de Engenharia de Software da UnB-FCTE.
 
-## 💡 Observações
 
-- Sistema desenvolvido para o **curso de Engenharia de Software** da UnB-FCTE.
+   
+
