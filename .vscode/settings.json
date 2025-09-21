@@ -4,5 +4,6 @@
         "string": "cpp",
         "stdio.h": "c",
         "game.h": "c"
-    }
+    },
+    "python-envs.pythonProjects": []
 }
