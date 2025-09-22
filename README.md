@@ -22,7 +22,7 @@
 ## 🎬 Apresentação do Projeto
 
 <div align="center">
-<a href="https://youtu.be/UFUj0rDUyyU"><img src="https://i.imgur.com/2LNlNYO.png" width="50%"></a>
+<a href="https://youtu.be/dY56_IJ9qys"><img src="" width="50%"></a>
 </div>
 
 Autores: [Danielle Soares](https://github.com/danielle-soaress) e [Leticia Arisa](https://github.com/Leticia-Arisa-K-Higa).
