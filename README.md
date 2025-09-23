@@ -31,6 +31,7 @@ Link: <a href="https://youtu.be/dY56_IJ9qys"> https://youtu.be/dY56_IJ9qys</a>
   <br>
 Autores: <a href=https://github.com/danielle-soaress">Danielle Soares</a> e <a href=https://github.com/Leticia-Arisa-K-Higa">Leticia Arisa</a>.
 </div>
+
 ## 🎯 Objetivo
 
 Desenvolver uma aplicação interativa que permita ao usuário **desenhar ou carregar mapas de labirinto** que contenha obstáculos e resolvê-los utilizando o algoritmo de Dijkstra.
